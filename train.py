@@ -21,7 +21,7 @@ from utils.io.data import DataGen, save_results, save_history, load_data
 input_dim_x=224
 input_dim_y=224
 n_filters = 32
-dataset = 'Medetec_foot_ulcer_224'
+dataset = ''
 data_gen = DataGen('./data/' + dataset + '/', split_ratio=0.2, x=input_dim_x, y=input_dim_y)
 
 ######### Get the deep learning models #########
