@@ -16,32 +16,23 @@ https://github.com/JonathanCMitchell/mobilenet_v2_keras
     Classification, Detection and Segmentation](https://arxiv.org/abs/1801.04381)
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
+from __future__ import absolute_import, division, print_function
 import numpy as np
 import tensorflow as tf
 
-from keras.models import Model
-from keras import layers
-from keras.layers import Input
-from keras.layers import Activation
-from keras.layers import Concatenate
-from keras.layers import Add
-from keras.layers import Dropout
-from keras.layers import BatchNormalization
-from keras.layers import Conv2D
-from keras.layers import DepthwiseConv2D
-from keras.layers import ZeroPadding2D
-from keras.layers import AveragePooling2D
-from keras.layers import Layer
-from tensorflow.keras.layers import InputSpec
+from tensorflow.keras.models import Model
+from tensorflow.keras import layers
+from tensorflow.keras.layers import Input, Activation, Concatenate, Add, Dropout
+from tensorflow.keras.layers import BatchNormalization, Conv2D, DepthwiseConv2D
+from tensorflow.keras.layers import ZeroPadding2D, AveragePooling2D, Layer
 from tensorflow.keras.utils import get_source_inputs
-from keras import backend as K
-from keras.applications import imagenet_utils
-from keras.utils import conv_utils
-from keras.utils.data_utils import get_file
+# from tensorflow.keras.utils import conv_utils
+from tensorflow.python.keras.utils import conv_utils
+# from tensorflow.keras.utils.data_utils import get_file
+from tensorflow.keras.utils import get_file
+from tensorflow.keras.layers import InputSpec
+from tensorflow.keras import backend as K
+from tensorflow.keras.applications import imagenet_utils
 
 WEIGHTS_PATH_X = "https://github.com/bonlime/keras-deeplab-v3-plus/releases/download/1.1/deeplabv3_xception_tf_dim_ordering_tf_kernels.h5"
 WEIGHTS_PATH_MOBILE = "https://github.com/bonlime/keras-deeplab-v3-plus/releases/download/1.1/deeplabv3_mobilenetv2_tf_dim_ordering_tf_kernels.h5"
@@ -100,6 +91,7 @@ class BilinearUpsampling(Layer):
                   'data_format': self.data_format}
         base_config = super(BilinearUpsampling, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
+
 
 
 def SepConv_BN(x, filters, prefix, stride=1, kernel_size=3, rate=1, depth_activation=False, epsilon=1e-3):
